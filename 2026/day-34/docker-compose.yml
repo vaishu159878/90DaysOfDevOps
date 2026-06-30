@@ -1,0 +1,67 @@
+version: "3.9"
+
+services:
+  web:
+    build: ./app
+    container_name: flask-app
+
+    ports:
+      - "5000:5000"
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    restart: on-failure
+
+    networks:
+      - app-network
+
+    labels:
+      app: "flask"
+      environment: "dev"
+
+  db:
+    image: postgres:16
+    container_name: postgres-db
+
+    restart: always
+
+    environment:
+      POSTGRES_DB: mydb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+    networks:
+      - app-network
+
+    labels:
+      app: "postgres"
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis-cache
+
+    restart: always
+
+    networks:
+      - app-network
+
+    labels:
+      app: "redis"
+
+volumes:
+  postgres-data:
+
+networks:
+  app-network:
+    driver: bridge
