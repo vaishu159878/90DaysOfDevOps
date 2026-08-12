@@ -216,7 +216,7 @@ kubectl describe deployment nginx-deployment -n dev | grep Image
 ```bash
 kubectl delete deployment nginx-deployment -n dev
 kubectl delete pod nginx-dev -n dev
-kubectl delete pod nginx-staging -n staging
+kubectl delete pod nginx-staging -n stagingc:\Users\Vaishnavi\Downloads\day-52-namespaces-deployments.md
 kubectl delete namespace dev staging production
 ```
 
