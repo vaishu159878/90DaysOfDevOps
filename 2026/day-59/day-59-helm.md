@@ -14,22 +14,6 @@ The main concepts I learned today were:
 * **Release** – An installed instance of a Helm chart.
 * **Repository** – A place where Helm charts are stored.
 
-The basic flow I understood is:
-
-```text
-Helm Repository
-       ↓
-     Chart
-       ↓
-     Values
-       ↓
-   Templates
-       ↓
-Kubernetes Resources
-       ↓
-    Release
-```
-
 ---
 
 ## 1. Installing and Checking Helm
