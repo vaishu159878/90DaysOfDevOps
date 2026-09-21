@@ -1,0 +1,21 @@
+name: Runner Preinstalled Tools
+
+on:
+  workflow_dispatch:
+
+jobs:
+  tools:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Docker version
+        run: docker --version
+
+      - name: Python version
+        run: python3 --version
+
+      - name: Node version
+        run: node --version
+
+      - name: Git version
+        run: git --version
