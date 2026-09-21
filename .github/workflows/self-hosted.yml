@@ -1,0 +1,33 @@
+name: Self Hosted Runner
+
+on:
+  workflow_dispatch:
+
+jobs:
+  self-hosted-job:
+    runs-on: self-hosted
+
+    steps:
+      - name: Print hostname
+        run: |
+          echo "Hostname:"
+          hostname
+
+      - name: Print current user
+        run: |
+          echo "Current user:"
+          whoami
+
+      - name: Print working directory
+        run: |
+          echo "Working directory:"
+          pwd
+
+      - name: Create test file
+        run: |
+          echo "Hello from my self-hosted runner!" > day42-runner-test.txt
+
+      - name: Verify test file
+        run: |
+          ls -l day42-runner-test.txt
+          cat day42-runner-test.txt
